@@ -1,0 +1,101 @@
+DUP
+
+example:
+
+include irvine32.inc
+
+.data 
+array BYTE 50 DUP(0)
+message1 BYTE "Enter the 5 numbers:"
+
+.code
+
+main proc
+	
+mov edx, OFFSET message1
+call writestring
+
+mov ecx, 0
+.while (ecx < 5)
+call readdec
+mov array[ecx], al
+inc ecx
+.endw
+call crlf
+
+mov al, 0
+mov ecx, 0
+.while (ecx < 5)
+mov al, array[ecx]
+call writedec
+call crlf
+inc ecx
+.endw
+
+exit
+main endp
+end main
+
+
+
+
+Q1:
+
+.data 
+array BYTE 50 DUP(0)
+message1 BYTE "Enter the 10 numbers:"
+
+mov edx, OFFSET message1
+call writestring
+call crlf
+
+.code
+mov ecx, 0
+.while (ecx < 10)
+call readdec
+mov array[ecx], al
+inc ecx
+.endw
+call crlf
+
+mov ecx, 0
+.while (ecx < 10)
+add al, array[ecx]
+call writedec
+call crlf
+inc ecx
+.endw
+
+
+Q2:
+.data 
+array BYTE 50 DUP(0)
+message1 BYTE "Enter the 5 numbers:"
+
+.code
+mov edx, OFFSET message1
+call writestring
+call crlf
+
+mov ecx, 0
+.while (ecx < 5)
+call readdec
+mov array[ecx], al
+inc ecx
+.endw
+call crlf
+
+mov al, 0
+mov ecx, 0
+.while (ecx < 5)
+add al, array[ecx]
+call writedec
+call crlf
+inc ecx
+.endw
+call crlf
+
+mov bl, 5
+div bl
+call writedec
+call crlf

@@ -1,0 +1,23 @@
+.code
+ main PROC
+
+push 8            
+push eip
+mov eip,ebp ;pointer registers
+mov eax,[eip+8]    
+cmp eax,0                
+Ja loop1               
+mov eax,1                
+Jmp L2               
+
+loop1: dec  eax            
+push eax
+;Recursive call returns.
+Recursivecall:
+mov ebx,[eip+8]    
+mul ebx              
+call writeDec      
+call crlf
+exit
+main ENDP
+END main

@@ -1,0 +1,52 @@
+PROCEDURE
+
+.data
+
+.code
+addition PROC
+add eax,ebx
+ret
+
+addition ENDP
+
+main proc
+mov eax,5
+mov ebx,5
+
+call addition
+call writedec
+call crlf
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.data
+
+.code
+subtract PROC
+sub eax,ebx
+ret
+
+subtract ENDP
+
+main proc
+mov eax,10
+mov ebx,5
+
+call subtract
+call writedec
+call crlf

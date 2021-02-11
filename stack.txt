@@ -1,0 +1,38 @@
+STACK
+
+
+.data
+num1 dword 1
+num2 dword 2
+num3 dword 3
+num4 dword 4
+num5 dword ?
+
+.code
+push num1
+push num2
+push num3
+push num4
+
+mov eax,5
+push eax
+pop eax
+call writedec
+call crlf
+
+pop eax
+call writedec
+call crlf
+
+pop eax
+call writedec
+call crlf
+
+pop num5
+mov eax,num5
+call writedec
+call crlf
+
+pop eax
+call writedec
+call crlf
