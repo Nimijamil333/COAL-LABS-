@@ -1,0 +1,52 @@
+Here is a simple program that creates a random number and allows the user to guess what the number is.TITLE Guess a number (Guesser.asm); 
+This program allows the user to guess a random number
+INCLUDE Irvine32.inc
+.data
+welcome BYTE "I'm thinking of number between 1 and 10. 
+"BYTE 'You must guess it.', 0dh, 0ah, 0
+prompt BYTE 'What is your guess? ', 0
+report1 BYTE 'You guessed: ', 0
+report2 BYTE 13, 10, 'The secret number was: ', 0
+report3 BYTE 13, 10, 'Thanks for playing', 13, 10, 0
+secret DWORD ? ; the secret random number
+.code
+main PROC
+; Welcome user
+mov edx, OFFSET welcome
+call WriteString; get the random number
+call Randomize                        ; initialize the random number generator
+mov eax, 10                             ; there are 10 numbers in the range
+call RandomRange                   ; random [0..9]
+inc eax                                                 ; add 1 to get 1 through 10
+mov secret,eax                         ; store the number in memory ; Get user's guess
+mov edx, OFFSET prompt       ; display prompt for input
+call WriteString
+call readInt                               ; get user input into eax ; display the user's 
+guessmov edx, OFFSET report1
+call WriteString
+call WriteInt ; display the secret number
+mov edx, OFFSET report2
+call WriteString
+mov eax,secret                         ; reload the number for output
+call WriteInt ; display exit message
+mov edx, OFFSET report3
+call WriteString 
+exit
+main ENDP
+END main 
+Notice how the use of
+WriteString and WriteInt requires a "set up" command. 
+Each of these procedures expects an argumentto be preloaded in a specific register. 
+Passing arguments to procedures via registers is a simple and effective technique. 
+Also, note how the strings are defined in the data segment. 
+The newline sequences must be inserted at the correct locations so the output is nicely formatted. 
+Be sure to null-terminate any strings you plan to display using WriteString.
+When you run this program, you should see something like this:
+I'm thinking of number between 1 and 10. 
+You must guess it.
+What is your guess? 6
+You guessed: +6
+The secret number was: +3
+Thanks for playing
+Press any key to continue . . .
+
